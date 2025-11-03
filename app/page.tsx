@@ -8,20 +8,19 @@ import { toast } from "sonner";
 
 
 export default function Home() {
+          const { 
+        data: session,  //refetch the session
+    } = authClient.useSession() 
 
   const router = useRouter();
 
-    const { 
-        data: session, 
-        isPending,
-    } = authClient.useSession() 
 
     async function signOut() {
       await authClient.signOut({
         fetchOptions: {
           onSuccess: () => {
             router.push("/"); // redirect to login page
-            toast.success("Logout successfully")
+            toast.success("Signout successfully")
           },
         },
       });
